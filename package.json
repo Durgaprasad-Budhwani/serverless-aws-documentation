@@ -21,6 +21,7 @@
   "dependencies": {
     "bluebird": "^3.5.4",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
     "object-hash": "^1.1.7",
     "swagger-parser": "^6.0.5"
   }

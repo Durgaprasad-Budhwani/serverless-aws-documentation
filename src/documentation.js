@@ -1,6 +1,7 @@
 'use strict';
 
 const objectHash = require('object-hash');
+const isEqual = require('lodash.isequal');
 
 const globalDocumentationParts = require('./globalDocumentationParts.json');
 const functionDocumentationParts = require('./functionDocumentationParts.json');
@@ -93,6 +94,13 @@ module.exports = function() {
       });
     },
 
+    isSameLocation: function isSameLocation({ location:savedLocation }) {
+      if (savedLocation.path) {
+        savedLocation.path = savedLocation.path.replace(/^\//g, '');
+      }
+      return this.documentationParts.some(({location}) => isEqual(location, savedLocation));
+    },
+
     _updateDocumentation: function _updateDocumentation() {
       const aws = this.serverless.providers.aws;
       return aws.request('APIGateway', 'getDocumentationVersion', {
@@ -116,11 +124,13 @@ module.exports = function() {
             limit: 9999,
           })
         )
-        .then(results => results.items.map(
-          part => aws.request('APIGateway', 'deleteDocumentationPart', {
-            documentationPartId: part.id,
-            restApiId: this.restApiId,
-          })
+        .then(results => results.items.filter(item => this.isSameLocation(item)).map(
+          part => {
+            return aws.request('APIGateway', 'deleteDocumentationPart', {
+              documentationPartId: part.id,
+              restApiId: this.restApiId,
+            });
+          }
         ))
         .then(promises => Promise.all(promises))
         .then(() => this.documentationParts.reduce((promise, part) => {
