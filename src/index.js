@@ -78,8 +78,10 @@ class ServerlessAWSDocumentation {
 
           const {paths} = self.customVars.documentation.api;
           const {components, paths: parsePath} = parsedData;
-          // Handle references to models
-          self.replaceOpenAPIIDefinitions(api.components.schemas)
+          if ((api.components || {}).schemas) {
+            // Handle references to models
+            self.replaceOpenAPIIDefinitions(api.components.schemas)
+          }
           //Map swagger into documentation models
           const openAPIDefs = (components || {}).schemas;
           if (openAPIDefs) {
