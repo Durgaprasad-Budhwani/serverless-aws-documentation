@@ -112,8 +112,12 @@ class ServerlessAWSDocumentation {
                       return; // if documentation not found, check for other documentation
                     }
                     const methodDoc = {
-                      'requestHeaders': [], 'pathParams': [], 'queryParams': [],
-                      'requestModels': {}
+                      'requestHeaders': [],
+                      'pathParams': [],
+                      'queryParams': [],
+                      'requestModels': {},
+                      description: method.description,
+                      summary: method.summary,
                     }
                     if (method.parameters) {
                       const parameters = parsePath['/' + event.http.path][event.http.method].parameters;
@@ -171,7 +175,7 @@ class ServerlessAWSDocumentation {
                         methodDoc['methodResponses'].push(methodResponse);
                       });
                     }
-                    event.http.documentation = methodDoc
+                    event.http.documentation = methodDoc;
                   }
                 }
               })
@@ -211,8 +215,12 @@ class ServerlessAWSDocumentation {
                   if (path) {
                     const method = path[event.http.method]
                     const methodDoc = {
-                      'requestHeaders': [], 'pathParams': [], 'queryParams': [],
-                      'requestModels': {}
+                      'requestHeaders': [],
+                      'pathParams': [],
+                      'queryParams': [],
+                      'requestModels': {},
+                      description: method.description,
+                      summary: method.summary,
                     }
                     if (method.parameters) {
                       method.parameters.forEach(param => {
