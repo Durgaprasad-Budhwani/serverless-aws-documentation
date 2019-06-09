@@ -1,0 +1,138 @@
+openapi: 3.0.0
+info:
+  version: '1'
+  title: Aula API
+  description: Aula API
+
+paths:
+  /message:
+    post:
+      summary: Test post call
+      description: |
+        Add Message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        200:
+          description: successful creation of uploadid
+
+components:
+  schemas:
+    Dogs:
+      type: object
+      properties:
+        bark:
+          type: boolean
+        breed:
+          type: string
+          enum: [Dingo, Husky, Retriever, Shepherd]
+    Cat:
+      type: object
+      properties:
+        hunts:
+          type: boolean
+        age:
+          type: integer
+
+    PetByAge:
+      type: object
+      properties:
+        age:
+          type: integer
+          format: int32
+        nickname:
+          type: string
+      required:
+        - age
+
+    PetByType:
+      type: object
+      properties:
+        pet_type:
+          type: string
+          enum: [Cat, Dog]
+        hunts:
+          type: boolean
+      required:
+        - pet_type
+
+    Message:
+      type: object
+      required:
+        - name
+        - date
+      properties:
+        name:
+          type: string
+          minLength: 3
+          maxLength: 20
+        date:
+          type: string
+          format: date # NOT Supported
+        fullDate:
+          type: string
+          format: date-time
+        content:
+          type: string
+          format: byte # NOT Supported
+        email:
+          type: string
+          format: email
+        uuid:
+          type: string
+          format: uuid
+        uri:
+          type: string
+          format: uri
+        ip:
+          type: string
+          format: ipv4
+        ssn:
+          type: string
+          pattern: '^\d{3}-\d{2}-\d{4}$'
+        age:
+          type: number
+          minimum: 0
+          exclusiveMinimum: true
+          maximum: 120
+        money:
+          type: integer
+          multipleOf: 10
+        selected:
+          oneOf:
+            - type: boolean
+              description: indicator if level is selected
+            - type: number
+              minimum: 1
+              maximum: 100
+              description: indicator if level is selected
+        pets:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/Cat'
+              - $ref: '#/components/schemas/Dogs'
+          minItems: 1
+          maxItems: 5
+          uniqueItems: true
+        petDetails:
+          anyOf:
+            - $ref: '#/components/schemas/PetByAge'
+            - $ref: '#/components/schemas/PetByType'
+        order:
+          type: string
+          enum:
+            - asc
+            - desc
+        language:
+          type: object
+          additionalProperties:
+            type: string
+
+
+
+
