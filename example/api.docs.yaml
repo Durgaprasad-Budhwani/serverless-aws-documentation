@@ -4,7 +4,7 @@ info:
   title: Aula API
   description: Aula API
 
-paths:
+paths1:
   /message:
     post:
       summary: Test post call

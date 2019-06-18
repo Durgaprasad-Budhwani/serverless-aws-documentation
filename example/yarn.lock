@@ -2,6 +2,17 @@
 # yarn lockfile v1
 
 
+"@ublend-npm/serverless-aws-documentation@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ublend-npm/serverless-aws-documentation/-/serverless-aws-documentation-1.0.0.tgz#21ec24c0e1fa8693f17679e3bae51c5cec2d31d3"
+  integrity sha512-yJa6nukhbdGBxo2ZQYs9oMJuPv23Uc4kzxLD3o8nCx0GISD5G2ANN9WmiQjMpMFvVL8XTzmEF6+LTAuUkElQuw==
+  dependencies:
+    bluebird "^3.5.4"
+    lodash.clonedeep "^4.5.0"
+    lodash.isequal "^4.5.0"
+    object-hash "^1.1.7"
+    swagger-parser "^6.0.5"
+
 argparse@^1.0.7:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
@@ -102,7 +113,7 @@ openapi-schema-validation@^0.4.2:
     swagger-schema-official "2.0.0-bab6bed"
 
 "serverless-aws-documentation@file:..":
-  version "1.1.0"
+  version "1.0.0"
   dependencies:
     bluebird "^3.5.4"
     lodash.clonedeep "^4.5.0"

@@ -3,7 +3,7 @@ service: test
 
 plugins:
   - serverless-reqvalidator-plugin
-  - serverless-aws-documentation
+  - '@ublend-npm/serverless-aws-documentation'
 
 provider:
   name: aws
