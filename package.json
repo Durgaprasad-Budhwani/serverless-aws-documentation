@@ -1,6 +1,6 @@
 {
-  "name": "serverless-aws-documentation",
-  "version": "1.1.0",
+  "name": "@ublend-npm/serverless-aws-documentation",
+  "version": "1.0.0",
   "description": "Serverless 1.0 plugin to add documentation and models to the serverless generated API Gateway",
   "main": "src/index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   "dependencies": {
     "bluebird": "^3.5.4",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
     "object-hash": "^1.1.7",
     "swagger-parser": "^6.0.5"
   }
